@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -14,7 +14,9 @@ import { By } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-logs',
-  template: '<router-outlet></router-outlet>'
+  template: '<router-outlet></router-outlet>',
+  standalone: true,
+  imports: [RouterOutlet]
 })
 class LogsWorkflowComponent {}
 
@@ -62,9 +64,9 @@ describe('Logs workflow Integration Tests', () => {
         MatSnackBarModule,
         MatDialogModule,
         NoopAnimationsModule,
-        AdminLogsComponent
+        AdminLogsComponent,
+        LogsWorkflowComponent
       ],
-      declarations: [LogsWorkflowComponent],
       providers: [
         { provide: AdminService, useValue: mockAdminService }
       ]
